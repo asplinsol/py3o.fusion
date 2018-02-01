@@ -1,11 +1,9 @@
 FROM xcgd/py3o.fusion
 
-RUN apt-get update && apt-get install -y build-essential wget && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y build-essential curl && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /tmp/
-RUN wget https://github.com/asplinsol/py3o.fusion/archive/multiline_v2.tar.gz && \
-    tar zxvf multiline_v2.tar.gz && \
-    mv multiline_v2 py3o.template
+RUN mkdir py3o.template && curl https://bitbucket.org/asplinsolutions/py3o.template/get/multiline_v2.1.tar.gz | tar xzC py3o.template --strip 1
 WORKDIR /tmp/py3o.template/
 
 RUN pip install Pillow 
